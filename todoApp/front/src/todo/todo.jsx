@@ -5,6 +5,8 @@ import TodoForm from "../todo/todoForm"
 import TodoList from "../todo/todoList"
 
 const URL_NODE_EXPRESS = 'http://localhost:3001/api/todos'
+const URL_java = 'http://localhost:8082/api/javatodos/'
+
 export default class Todo extends Component {
 
     constructor(props){
@@ -25,28 +27,28 @@ export default class Todo extends Component {
     
     handleAdd(){
         const description = this.state.description;
-        axios.post(URL_NODE_EXPRESS, {description})
+        axios.post(URL_java , {description})
         .then(resp => this.handleSearch());
     }
 
-    handleSearch(description = ''){
+    handleSearch(description = ""){
         const search = description ? `&description__regex=/${description}` : '';
-        axios.get(`${URL_NODE_EXPRESS}?sort=-createdAt${search}`)
+        axios.get(`${URL_java}?sort=-createdAt${search}`)
             .then(resp => this.setState({...this.state, description, list: resp.data}));
     }
 
     handleAsDone(todo){
-       axios.put(`${URL_NODE_EXPRESS}/${todo._id}`, {...todo, done: true})
+        axios.put(`${URL_NODE_EXPRESS}/${todo.id}`, {...todo, done: true})
        .then(resp => this.handleSearch());
     } 
 
-    handleRemove(todo){
-        axios.delete(`${URL_NODE_EXPRESS}/${todo._id}`)
+    handleRemove(todo ) {
+        axios.delete(`${URL_java}/${todo.id}`)
         .then(resp => this.handleSearch());
     } 
 
     handleAsPendind(todo){
-        axios.put(`${URL_NODE_EXPRESS}/${todo._id}`, {...todo, done: false})
+        axios.put(`${URL_NODE_EXPRESS}/${todo.id}`, {...todo, done: false})
        .then(resp => this.handleSearch());
     }
 
