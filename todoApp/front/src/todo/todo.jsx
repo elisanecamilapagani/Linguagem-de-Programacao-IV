@@ -27,7 +27,7 @@ export default class Todo extends Component {
     
     handleAdd(){
         const description = this.state.description;
-        axios.post(URL_java , {description})
+        axios.post(URL_java, {description})
         .then(resp => this.handleSearch());
     }
 
@@ -38,17 +38,17 @@ export default class Todo extends Component {
     }
 
     handleAsDone(todo){
-        axios.put(`${URL_NODE_EXPRESS}/${todo.id}`, {...todo, done: true})
+        axios.put(`${URL_NODE_EXPRESS}/${todo._id}`, {...todo, done: true})
        .then(resp => this.handleSearch());
     } 
 
     handleRemove(todo ) {
-        axios.delete(`${URL_java}/${todo.id}`)
+        axios.delete(`${URL_java}/${todo._id}`)
         .then(resp => this.handleSearch());
     } 
 
     handleAsPendind(todo){
-        axios.put(`${URL_NODE_EXPRESS}/${todo.id}`, {...todo, done: false})
+        axios.put(`${URL_NODE_EXPRESS}/${todo._id}`, {...todo, done: false})
        .then(resp => this.handleSearch());
     }
 
@@ -68,7 +68,7 @@ export default class Todo extends Component {
                 <TodoList list={this.state.list}
                     handleAsDone={this.handleAsDone}
                     handleRemove={this.handleRemove}
-                    handleAsPendind={this.handleAsPendind}
+                   handleAsPendind={this.handleAsPendind}
                 />
             </div>
 

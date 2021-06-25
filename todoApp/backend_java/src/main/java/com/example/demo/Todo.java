@@ -2,13 +2,10 @@ package com.example.demo;
 
 import java.util.Date;
 
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection= "todos")
+@Document (collection = "todos")
 public class Todo {
-	
-	
 	
 	private String _id;
 	
@@ -21,18 +18,17 @@ public class Todo {
 	public Date getCreatedAt() {
 		return createdAt;
 	}
-	
-	public void setid(String _id) {
-		this._id = _id;
-	}
-	
-	public String getid() {
-		return _id;
-	}
-	
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public boolean isDone() {
@@ -43,7 +39,11 @@ public class Todo {
 		this.done = done;
 	}
 
-	public String getDescription() {
-		return description;
+	public String get_id() {
+		return _id;
+	}
+
+	public void set_id(String _id) {
+		this._id = _id;
 	}
 }
